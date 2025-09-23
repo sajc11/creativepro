@@ -18,18 +18,22 @@
     const root = document.createElement("div");
     root.className = "drawer-root";
     root.innerHTML = `
-      <div class="drawer">
-        <div class="files"></div>
-        <div class="preview">
-          <div class="label">
-            <span id="pvLabel">Preview</span>
-            <button class="openbtn" id="pvOpen" disabled>Open</button>
+      <div class="folder-shell">
+        <div class="speed-index">
+          <div class="stacks">
+            <div class="stack left"></div>
+            <div class="center-well">
+              <div class="open-file" id="openFile">
+                <div class="bar"></div>
+                <div class="tab-top" id="ofTab">Preview</div>
+                <div class="chrome"><span id="ofHint">Hover a file tab to preview • Click to open</span><button class="closebtn" id="ofClose">Close</button></div>
+                <div class="frame">
+                  <iframe id="ofFrame" loading="lazy" referrerpolicy="no-referrer"></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="stack right"></div>
           </div>
-          <div class="frame">
-            <iframe id="pvFrame" loading="lazy" referrerpolicy="no-referrer"></iframe>
-            <div class="overlay"></div>
-          </div>
-          <div class="hint">Hover a folder to preview • Click to open</div>
         </div>
       </div>`;
     const container = cabinet.querySelector(".container");
@@ -37,40 +41,36 @@
     container.appendChild(root);
     document.body.classList.add("drawer-installed");
 
-    const files = root.querySelector(".files");
-    const pvFrame = root.querySelector("#pvFrame");
-    const pvLabel = root.querySelector("#pvLabel");
-    const pvOpen  = root.querySelector("#pvOpen");
-    const preview = root.querySelector(".preview");
-    let current = null, hoverTimer = null;
-
-    PAGES.forEach(pg => {
-      const li = document.createElement("div");
-      li.className = "file";
-      li.dataset.url = pg.url;
-      li.innerHTML = `<div class="tab">${pg.icon} ${pg.label}</div><div class="sheet"></div>`;
-      files.appendChild(li);
-
-      li.addEventListener("mouseenter", () => {
-        pvOpen.disabled = (pg.url === "#");
-        pvLabel.textContent = pg.label;
-        clearTimeout(hoverTimer);
-        hoverTimer = setTimeout(() => {
-          if (pvFrame.dataset.src !== pg.url){
-            preview.classList.add("loading");
-            pvFrame.dataset.src = pg.url;
-            pvFrame.src = pg.url;
-            pvFrame.onload = () => preview.classList.remove("loading");
-          }
-        }, 120);
+    
+    const left = root.querySelector(".stack.left");
+    const right = root.querySelector(".stack.right");
+    const of = root.querySelector("#openFile");
+    const ofTab = root.querySelector("#ofTab");
+    const ofFrame = root.querySelector("#ofFrame");
+    const ofClose = root.querySelector("#ofClose");
+    function makeSlim(pg, i){
+      const host = (i % 2 === 0) ? left : right;
+      const slim = document.createElement("div");
+      slim.className = "slim pos"+(i%4);
+      slim.dataset.url = pg.url;
+      slim.innerHTML = `<div class="tab">${pg.icon} ${pg.label}</div><div class="label">${pg.label}</div>`;
+      host.appendChild(slim);
+      // Hover → preview in center but keep tucked (only visible when clicked)
+      slim.addEventListener("mouseenter", () => {
+        ofTab.textContent = pg.label;
+        if(ofFrame.dataset.src !== pg.url){
+          ofFrame.dataset.src = pg.url;
+          ofFrame.src = pg.url;
+        }
       });
-
-      li.addEventListener("click", () => {
-        if (pg.url && pg.url !== "#") location.href = pg.url;
+      // Click → open center file
+      slim.addEventListener("click", () => {
+        of.classList.add("visible");
       });
-    });
-
-    pvOpen.addEventListener("click", () => {
+    }
+    PAGES.forEach((pg,i)=> makeSlim(pg,i));
+    ofClose.addEventListener("click", ()=> of.classList.remove("visible"));
+    ("click", () => {
       const url = pvFrame?.dataset?.src;
       if(url && url !== "#") location.href = url;
     });
