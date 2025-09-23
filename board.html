@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🗒️ Post-it Board</title><link rel="stylesheet" href="assets/css/styles.css"></head>
+<body><header class="topbar card"><nav class="nav container"><div class="left"><a href="creative.html">← Cabinet</a> <strong>Message Board</strong></div>
+  <div class="right"><span class="small" id="count"></span><button class="btn" id="addNote">Add Note</button><button class="btn secondary" id="clearNotes">Clear</button>
+    <button class="btn secondary" id="exportNotes">Export</button><label class="btn secondary" style="cursor:pointer">Import <input id="importNotes" type="file" accept="application/json" hidden></label></div></nav></header>
+<section class="container section"><div class="card" style="padding:16px"><div class="board"></div></div></section>
+<section class="container section"><div class="card" style="padding:16px"><h3>Want a truly public message board?</h3>
+  <p class="small">Because GitHub Pages is static, the above sticky notes are saved only on each visitor’s device. To enable shared comments, configure <strong>Giscus</strong> for your repo and replace the attributes below.</p>
+  <div class="card" style="padding:10px; background:rgba(255,255,255,.04)">
+    <script src="https://giscus.app/client.js" data-repo="OWNER/REPO" data-repo-id="REPO_ID" data-category="Announcements" data-category-id="CATEGORY_ID" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="transparent_dark" data-lang="en" crossorigin="anonymous" async></script>
+  </div></div></section>
+<footer class="small">Sticky notes are client-side only by default. Export and commit JSON if you want to publish them.</footer>
+<script src="assets/js/storage.js"></script><script src="assets/js/board.js"></script></body></html>

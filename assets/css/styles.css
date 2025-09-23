@@ -1,0 +1,120 @@
+
+:root{
+  --bg:#0b0c10; --card:#111218; --ink:#e5e7eb; --muted:#9aa3af; --accent:#8a7bff; --accent-2:#00f0ff;
+  --y2k:#ffe800; --hot:#ff3ea5; --ok:#00ffa3; --warn:#ffb540; --shadow:0 10px 30px rgba(0,0,0,.25);
+  --radius:18px; --font: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  background:radial-gradient(1200px 600px at 80% -30%, rgba(138,123,255,.25), transparent 50%),
+             radial-gradient(1000px 500px at -10% -20%, rgba(0,240,255,.18), transparent 55%),
+             var(--bg);
+  color:var(--ink); margin:0; font-family:var(--font); line-height:1.45;
+}
+a{color:var(--accent-2); text-decoration:none} a:hover{text-decoration:underline}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius); box-shadow:var(--shadow)}
+
+header.topbar{ position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(10px);
+  background:rgba(7,8,12,.6); border-bottom:1px solid rgba(255,255,255,.08);}
+.nav{ display:flex; gap:16px; align-items:center; justify-content:space-between; padding:14px 24px}
+.nav a,.nav button{ color:var(--ink); background:transparent; border:0; font-weight:600; padding:8px 12px;
+  border-radius:12px; transition:.2s ease transform, .2s ease background}
+.nav a:hover,.nav button:hover{ background:rgba(255,255,255,.06); transform:translateY(-1px)}
+.switch-mode{ border:1px solid rgba(255,255,255,.1); padding:8px 14px; border-radius:999px;
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02))}
+.hero{padding:72px 24px} .hero h1{font-size:48px;margin:0 0 8px} .hero p{color:var(--muted);font-size:18px;margin:0 0 24px}
+.btn{ padding:12px 18px; border-radius:12px; border:1px solid rgba(255,255,255,.14);
+  background:linear-gradient(180deg, rgba(138,123,255,.25), rgba(138,123,255,.08)); color:#fff; font-weight:700; letter-spacing:.3px; cursor:pointer}
+.btn.secondary{ background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02))}
+.grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:20px}
+.section{padding:30px 24px} h2.section-title{margin:8px 0 18px; font-size:26px} footer{padding:40px; text-align:center; color:var(--muted)}
+
+/* Cabinet overlay */
+.cabinet{ position:fixed; top:-80vh; left:0; right:0; height:80vh; background:linear-gradient(180deg,#f8f8fb,#e7e8f4);
+  color:#111; border-bottom-left-radius:24px; border-bottom-right-radius:24px; box-shadow:0 30px 90px rgba(0,0,0,.45);
+  transition:top .55s cubic-bezier(.2,.85,.25,1); z-index:60; overflow:auto; border-bottom:2px solid #d7d8e4}
+.cabinet.open{ top:0 }
+.cabinet .handle{ position:absolute; left:50%; transform:translate(-50%, -100%); top:0; background:#ffe800; color:#111;
+  padding:12px 16px; border-radius:12px 12px 0 0; box-shadow:0 -8px 16px rgba(0,0,0,.15); font-weight:800; letter-spacing:.5px;
+  cursor:pointer; border:2px solid #111}
+.drawer-tabs{ display:flex; gap:14px; padding:14px 24px; flex-wrap:wrap}
+.tab{ background:#fff; border:2px solid #111; border-radius:14px; padding:8px 12px; box-shadow:4px 5px 0 #111; font-weight:800; color:#111; cursor:pointer}
+.tab:hover{ transform:translate(-1px,-1px); box-shadow:6px 7px 0 #111}
+.tab a{ color:#111; text-decoration:none}
+
+/* Shelf */
+.shelf{perspective:1200px; margin:24px 0 40px; position:relative; height:220px}
+.shelf-row{position:absolute; left:0; right:0; bottom:0; height:200px; transform:rotateX(12deg); transform-origin:bottom}
+.shelf-row::after{ content:""; position:absolute; left:0; right:0; bottom:-12px; height:12px;
+  background:linear-gradient(180deg, #b39ddb,#6d64b0); border-radius:0 0 18px 18px; box-shadow:0 6px 20px rgba(0,0,0,.35)}
+.spine{ height:180px; width:38px; margin:0 6px; border-radius:8px; color:#111; font-weight:900; letter-spacing:.8px;
+  display:flex; align-items:center; justify-content:center; writing-mode:vertical-rl; text-orientation:mixed; transform:translateZ(0); cursor:pointer;
+  border:2px solid rgba(0,0,0,.75); box-shadow:2px 3px 0 rgba(0,0,0,.8); transition:transform .2s ease, box-shadow .2s ease}
+.spine:hover{ transform:translateY(-6px) rotateX(-5deg); box-shadow:6px 8px 0 rgba(0,0,0,.8)}
+.modal{position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:80}
+.modal.open{display:flex}
+.modal .panel{ width:min(720px, 92vw); background:#0f1117; border:1px solid rgba(255,255,255,.1); border-radius:18px; padding:18px; box-shadow:var(--shadow)}
+label{font-size:14px; color:var(--muted); display:block; margin:4px 0}
+input, select, textarea{ width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.03); color:var(--ink); font-family:var(--font)}
+.controls{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+.star{font-size:22px; cursor:pointer; filter:saturate(1.2)} .star.on{color:#ffd166}
+.tag{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); margin-right:8px}
+
+/* Post-it board */
+.board{ display:grid; grid-template-columns:repeat(auto-fill, minmax(170px,1fr)); gap:20px; padding:20px}
+.note{ background:#fff7a8; color:#111; padding:14px; border-radius:12px; border:2px solid #111; box-shadow:4px 6px 0 #111; transform:rotate(var(--rot, -2deg));
+  font-family: "Comic Sans MS","Marker Felt","Bradley Hand", var(--font); min-height:140px; position:relative}
+.note .pin{ position:absolute; width:16px; height:16px; background:#ff5252; border-radius:50%; border:2px solid #111; right:12px; top:8px}
+
+/* Journal */
+.canvas-wrap{background:#f5f6ff; border:2px dashed #111; border-radius:16px; padding:12px; overflow:auto}
+#journalStage{width:100%; height:560px; background:#fff; border-radius:12px; border:2px solid #111}
+.toolrow{display:flex; flex-wrap:wrap; gap:10px; padding:6px 0}
+.toolrow input[type='file']{background:#fff; color:#111}
+
+/* Calendar */
+.calendar{display:grid; grid-template-columns:repeat(7, 1fr); gap:10px; padding-top:10px}
+.cal-header{display:grid; grid-template-columns:repeat(7, 1fr); gap:10px; color:var(--muted)}
+.day{background:#141723; border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:8px; min-height:110px; position:relative}
+.day h4{margin:0; font-size:12px; color:var(--muted)} .sticker{position:absolute; bottom:8px; right:8px; width:48px; height:48px; object-fit:contain; filter:drop-shadow(2px 2px 0 rgba(0,0,0,.6))}
+
+/* Y2K details */
+.y2k-chip{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border-radius:12px; border:2px solid #111; background:var(--y2k); color:#111; box-shadow:4px 4px 0 #111; font-weight:900}
+hr.sep{border:none; height:1px; background:linear-gradient(90deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); margin:20px 0}
+
+.small{font-size:12px; color:var(--muted)}
+
+/* --- Creative landing (web) --- */
+body.creative-landing{ background:#000; color:#eee }
+.web-wrap{ position:relative; height:calc(100vh - 70px) }
+#webcanvas{ position:absolute; inset:0; display:block }
+#tooltip{ position:absolute; padding:6px 10px; background:#111; color:#fff; border:1px solid rgba(255,255,255,.25);
+  border-radius:10px; pointer-events:none; font-size:12px; transform:translate(-50%, -140%); white-space:nowrap; box-shadow:0 6px 20px rgba(0,0,0,.5) }
+.top-hover-zone{ position:fixed; top:0; left:0; right:0; height:64px; z-index:70; cursor:ns-resize;
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0)); border-bottom:1px solid rgba(255,255,255,.08) }
+.cabinet.peek{ top:-68vh } .node-hint{ position:absolute; left:16px; bottom:16px; background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.15); padding:8px 10px; border-radius:12px; font-size:12px }
+
+/* --- Hover glow for web nodes (canvas is drawn, but we add a soft overlay for tick feedback) --- */
+#tickFlash{ position:fixed; pointer-events:none; inset:0; background:radial-gradient(circle at var(--x,50%) var(--y,50%), rgba(255,255,255,.28), transparent 20%);
+  opacity:0; transition:opacity .25s ease; z-index:40 }
+#tickFlash.show{ opacity:1 }
+
+/* --- Journal palette + transform tools --- */
+.journal-layout{ display:grid; grid-template-columns: 1fr 260px; gap:16px }
+.palette{ background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:10px; height:100% }
+.palette h4{ margin:10px 0 6px }
+.palette .grid{ grid-template-columns:repeat(2,1fr); gap:8px }
+.palette img{ width:100%; height:100px; object-fit:contain; background:#fff; border-radius:10px; border:1px solid #ddd; cursor:pointer }
+.toolrow .tiny{ padding:6px 8px; font-size:12px }
+
+.crop-overlay{ position:relative }
+#cropRect{ fill:rgba(255,255,255,.15); stroke:#111; stroke-width:2; vector-effect:non-scaling-stroke }
+.handle{ fill:#fff; stroke:#111; stroke-width:2; vector-effect:non-scaling-stroke; cursor:nwse-resize }
+
+/* Cabinet drag progress indicator (top shadow increases as you drag) */
+.top-hover-zone.dragging{ background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.02)) }

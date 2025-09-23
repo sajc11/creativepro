@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>📆 Sticker Calendar</title><link rel="stylesheet" href="assets/css/styles.css"></head>
+<body><header class="topbar card"><nav class="nav container"><div class="left"><a href="creative.html">← Cabinet</a> <strong>Sticker Calendar</strong></div>
+  <div class="right"><button class="btn secondary" id="prev">◀</button><span class="y2k-chip" id="monthLabel"></span><button class="btn secondary" id="next">▶</button></div></nav></header>
+<section class="container section"><div class="card" style="padding:18px"><div class="cal-header"><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div></div>
+  <div class="calendar"></div>
+  <div class="controls" style="margin-top:10px"><button class="btn secondary" id="exportHL">Export highlights</button>
+    <label class="btn secondary" style="cursor:pointer">Import highlights <input id="importHL" type="file" accept="application/json" hidden></label></div></div></section>
+<footer class="small">Highlights come from entries you marked as public in your journal.</footer>
+<script src="assets/js/storage.js"></script><script src="assets/js/calendar.js"></script></body></html>

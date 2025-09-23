@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🔒 Private Journal</title><link rel="stylesheet" href="assets/css/styles.css"></head>
+<body>
+<header class="topbar card"><nav class="nav container"><div class="left"><a href="creative.html">← Cabinet</a> <strong>Private Journal</strong></div><div class="right"><span class="small">Encrypted, client-side only</span></div></nav></header>
+<div id="lock" class="container section"><div class="card" style="padding:18px"><h2>Unlock your journal</h2><p class="small">Data is encrypted locally with a password. No server, no tracking.</p>
+  <div class="controls"><input id="pw" type="password" placeholder="Password"><button id="unlockBtn" class="btn">Unlock</button><button id="initBtn" class="btn secondary">Initialize new vault</button></div>
+  <div id="status" class="small"></div></div></div>
+<div id="app" style="display:none">
+<section class="container section"><div class="card" style="padding:16px"><div class="journal-layout">
+  <div class="toolrow"><input id="entryTitle" placeholder="Entry title"><input id="entryDate" type="date"><button id="newEntry" class="btn secondary">New</button>
+    <button id="saveEntry" class="btn">Save</button><button id="exportVault" class="btn secondary">Export Vault</button>
+    <label class="btn secondary" style="cursor:pointer">Import Vault <input id="importVault" type="file" accept="application/json" hidden></label></div>
+  <div class="toolrow"><button id="addText" class="btn secondary">Add Text</button><button id="addEmoji" class="btn secondary">Add Emoji</button>
+    <label class="btn secondary" style="cursor:pointer">Add Sticker <input id="addSticker" type="file" accept="image/*" hidden></label>
+    <span class="small">or quick-add:</span>
+    <button class="btn secondary presetSticker" data-src="assets/images/stickers/sticker_star.png">⭐</button>
+    <button class="btn secondary presetSticker" data-src="assets/images/stickers/sticker_heart.png">💖</button>
+    <button class="btn secondary presetSticker" data-src="assets/images/stickers/sticker_blob.png">🔮</button>
+    <button id="deleteNode" class="btn secondary">Delete Selected</button></div>
+  <div><div class="canvas-wrap"><div id="journalStage"></div></div>
+  <hr class="sep">
+  <div class="toolrow"><label><input id="pubCheck" type="checkbox"> Publish a highlight to calendar</label><input id="pubCaption" placeholder="Highlight caption"><input id="pubSticker" placeholder="Sticker (emoji or data url)" value="⭐"></div>
+</div></section>
+<section class="container section"><h2 class="section-title">Your entries</h2><div id="entries"></div></section></div>
+<footer class="small">Tip: Use arrow keys to nudge selected items. Shift for bigger steps.</footer>
+<script src="assets/js/storage.js"></script><script src="assets/js/journal.js"></script></body></html>

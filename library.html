@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>📚 Library</title><link rel="stylesheet" href="assets/css/styles.css"></head>
+<body data-kind="books"><header class="topbar card"><nav class="nav container"><div class="left"><a href="creative.html">← Cabinet</a> <strong>Library</strong></div>
+  <div class="right"><span class="small" id="count"></span><button class="btn" id="addItem">Add Book</button><button class="btn secondary" id="exportItems">Export</button>
+    <label class="btn secondary" style="cursor:pointer">Import <input id="importItems" type="file" accept="application/json" hidden></label></div></nav></header>
+<section class="container section"><div class="card" style="padding:18px"><div class="shelf"><div class="shelf-row"></div></div></div></section>
+<div class="modal"><div class="panel"><div style="display:flex; justify-content:space-between; align-items:center"><h3>Edit book</h3><button class="btn secondary" id="closeModal">Close</button></div>
+<form><div class="grid" style="grid-template-columns:1fr 1fr">
+  <div><label>Title</label><input name="title" required></div><div><label>Author</label><input name="author"></div><div><label>Year</label><input name="year" type="number"></div>
+  <div><label>Spine color</label><input name="color" type="color" value="#BDB2FF"></div>
+  <div><label>Rating</label><div><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><input type="hidden" name="rating" value="0"></div></div>
+  <div><label><input type="checkbox" id="fav"> Favorite</label></div><div style="grid-column:1/-1"><label>Notes</label><textarea name="notes" rows="4" placeholder="What did you think?"></textarea></div></div></form>
+<div class="controls"><button class="btn" id="saveItem">Save</button><button class="btn secondary" id="deleteItem">Delete</button></div></div></div>
+<footer class="small">Click a spine to open details and rate.</footer>
+<script src="assets/js/storage.js"></script><script src="assets/js/library.js"></script></body></html>
