@@ -10,6 +10,7 @@
     {id:"music",    label:"Music",           icon:"🎵", url:"music.html"},
     {id:"network",  label:"Network",         icon:"🕸️", url:"network.html"},
     {id:"messaging",label:"Messaging",       icon:"💬", url:"messaging.html"},
+    {id:"cv",       label:"CV",              icon:"📄", url:"cv.html"},
     {id:"pro",      label:"Professional",    icon:"🧭", url:"index.html"}
   ];
 

@@ -12,6 +12,7 @@ const nodes=[
   {id:"dvds", label:"DVD Rack", url:"dvds.html"},
   {id:"board", label:"Post-it Board", url:"board.html"},
   {id:"pro", label:"Professional Site", url:"index.html"},
+  {id:"cv", label:"CV", url:"cv.html"},
   {id:"music", label:"Music (soon)", url:"#"},
   {id:"network", label:"Network (soon)", url:"#"},
   {id:"messaging", label:"Messaging (soon)", url:"#"},

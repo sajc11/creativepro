@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CV — Sophia Castor</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .cv-grid{display:grid; grid-template-columns:1fr; gap:16px}
+    details{ background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:14px }
+    summary{ cursor:pointer; font-weight:800; letter-spacing:.3px }
+    .cv-two{ display:grid; grid-template-columns:1fr 1fr; gap:10px }
+    .chip{ display:inline-flex; gap:8px; align-items:center; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); padding:6px 10px; border-radius:999px; margin-right:6px; margin-top:6px }
+    .item{ margin-bottom:10px }
+    .where{ color:var(--muted); font-size:12px }
+    .bul{ margin:6px 0 0 16px }
+    .bul li{ margin-bottom:6px }
+    .download{ margin-left:auto }
+  </style>
+</head>
+<body>
+  <header class="topbar card">
+    <nav class="nav container">
+      <div class="left"><a href="index.html">← Professional</a> <strong>Curriculum Vitae</strong></div>
+      <div class="right">
+        <a class="btn" href="assets/docs/Sophia_Castor_CV.pdf" target="_blank" rel="noopener">Download PDF</a>
+        <button class="btn secondary" data-open-cabinet>Open Cabinet</button>
+      </div>
+    </nav>
+  </header>
+
+  <section class="container section cv-grid">
+    <div class="card" style="padding:18px">
+      <h2 class="section-title">Professional Summary</h2>
+      <p>Principal-level AI/ML researcher focusing on human–machine teaming, trusted mission AI, and resilient sensor-driven systems. Leads DARPA-aligned R&amp;D, moves research to production for defense, intelligence, and healthcare, publishes in top venues (PETS 2025), and delivers reproducible systems in LLMs, agentic AI, GNNs, federated learning, and privacy-preserving ML. Strong communication and cross-functional leadership bridging AI innovation with human factors for mission-critical outcomes.</p>
+      <div class="small">Washington, DC • soc11@georgetown.edu • github.com/sophia-o-castor</div>
+    </div>
+
+    <div class="card" style="padding:18px">
+      <div class="cv-two">
+        <div>
+          <h3>Education</h3>
+          <ul class="bul">
+            <li><strong>MS, Data Science &amp; Analytics</strong>, Georgetown University — <em>Expected Dec 2025</em></li>
+            <li><strong>BS, Computer Science</strong>, Georgetown University — <em>May 2025</em> (Minor: Mathematics)</li>
+            <li><strong>BA, Government</strong>, Georgetown University — <em>May 2025</em></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Honors &amp; Awards</h3>
+          <ul class="bul">
+            <li>Data Science &amp; Analytics Returning Student Scholarship (2025–26)</li>
+            <li>Fritz Family Fellowship for Tech and Society (2024–25)</li>
+            <li>Massive Data Institute Scholar (2024–25)</li>
+            <li>InspiritAI Scholar (2023–24)</li>
+            <li>Regents STEM Scholar (2021–25)</li>
+            <li>Dean’s List (multiple terms 2022–2025)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <details open>
+      <summary>Publications</summary>
+      <div class="item"><strong>SCIF: Privacy-Preserving Statistics Collection with Input Validation and Full Security.</strong> PETS 2025. (Su, Bangalore, Berger, Yi, <u>Castor</u>, Sherr, Venkitasubramaniam)</div>
+      <div class="item"><strong>Hachiko:</strong> Transformer-based language &amp; vision models for medical record summarization in veterinary/comparative medicine (ANI.ML Health / Univ. Toronto, 2025).</div>
+      <div class="item"><strong>Undergrad Honors Thesis:</strong> Multi-Modal Biometric Identity Detection and Tracking System, Georgetown CS, Apr 2025.</div>
+      <div class="item"><strong>Augmented Reality Vision for Tumor Detection &amp; Surgical Marker Identification</strong> (ANI.ML Health / Univ. Toronto, 2024).</div>
+    </details>
+
+    <details open>
+      <summary>Research Experience</summary>
+      <div class="item">
+        <strong>Massive Data Institute — Undergraduate Research Scholar</strong> <span class="where">Georgetown • Jan 2024–Present</span>
+        <ul class="bul">
+          <li>Co-authored PETS 2025 paper “SCIF”; optimized runtime to &lt;10s/client &amp; &lt;40s/server at 500-client scale.</li>
+          <li>Designed privacy-preserving collection protocols (DP, MPC, ZK via Ligero), reduced overhead to 5MB/client, 182MB/server.</li>
+          <li>Built Go/Python/Shadow/SMC-in-a-Box pipelines for secure distributed AI agents in Tor networks.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <strong>NIH–Georgetown — Graduate Research Lead (Quantum Cognition)</strong> <span class="where">Fall 2023–Fall 2024</span>
+        <ul class="bul">
+          <li>Aligned quantum cognitive models with explainable AI for decision-support; full-stack fMRI analysis (SPM/Nilearn/Nipype).</li>
+        </ul>
+      </div>
+      <div class="item">
+        <strong>InspiritAI — Advanced ML Researcher</strong> <span class="where">Stanford/MIT • Summer 2023</span>
+        <ul class="bul">
+          <li>LLM fine-tuning with hierarchical attention; YOLOv8 pose/object detection under occlusion/low light.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <strong>Microtechnology Labs — Research Assistant</strong> <span class="where">Mar 2022–Sep 2023</span>
+        <ul class="bul">
+          <li>C++/Java biomedical sensor tooling; 40% durability gain via protective CAD vessel; clinician UI/UX improvements.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details open>
+      <summary>Industry Experience</summary>
+      <div class="item">
+        <strong>Leidos — Formal Methods Researcher Intern (SUNS IRAD)</strong> <span class="where">May 2025–Present</span>
+        <ul class="bul">
+          <li>LLVM-based static analysis &amp; formal verification toward Trusted Mission AI; Rust compiler plugins for call graphs, code layering metrics, complexity analysis; 50k+ functions across multi-crate repos.</li>
+          <li>Boundary Analyzer, GitScrape, RustAnalyzer toolkits with CI enforcement; SafeDocs/DaeDaLus parsers for TLE/ELSET satellite data (100% schema compliance on 10k+ records).</li>
+        </ul>
+      </div>
+      <div class="item">
+        <strong>ANI.ML Health — Principal DS &amp; ML Researcher</strong> <span class="where">Aug 2023–Present</span>
+        <ul class="bul">
+          <li>Hachiko clinical assistant (97% summarization accuracy, –45% documentation time); CV pipelines for surgery AR.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <strong>Amari – Hoya Developers — Lead ML &amp; Algorithms Research Engineer</strong> <span class="where">Aug 2024–May 2025</span>
+        <ul class="bul">
+          <li>Q-learning matchmaking (+20% success; 97% sustained), XAI (LIME) for transparency, Apache Airflow data pipelines.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <strong>Leidos — Software Development &amp; Webtools Engineer Intern</strong> <span class="where">May 2023–May 2025</span>
+        <ul class="bul">
+          <li>Automated ML pipeline (98% accuracy, 10k+ test cases); React/Java front, Python back; Atlassian toolchain.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <strong>McDonough School of Business — Principal Researcher (QC &amp; Tracking)</strong> <span class="where">Fall 2022–Spring 2023</span>
+      </div>
+    </details>
+
+    <details>
+      <summary>Teaching</summary>
+      <ul class="bul">
+        <li>Georgetown — TA/Grader (Calculus II), 80+ students; +12% average exam performance.</li>
+        <li>theCoderSchool — Lead Instructor (Scratch, Python, C++), 2020–2021.</li>
+        <li>After School Kids — Instructor &amp; Mentor, 2021–2023.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Leadership &amp; Service</summary>
+      <ul class="bul">
+        <li>Students of Georgetown, Inc. (The Corp) — Director of Seasonal Services (2,000+ boxes; $70k revenue; 30% cost reduction; built CSV/Excel/Tkinter order system with 45% fewer errors).</li>
+        <li>International Science Newspaper — Editor &amp; Media Lead (Bootstrap/PHP/XAMPP site; +20% readership).</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Technical Projects</summary>
+      <ul class="bul">
+        <li><strong>IoT Anomaly Propagation &amp; CDI</strong> — temporal GNNs, cascade trees; +25% attribution; Streamlit observability.</li>
+        <li><strong>Mental Health NLP</strong> — Reddit/Twitter classification; TF–IDF, BERT; SHAP explainability; interactive web app.</li>
+        <li><strong>Gig Economy Data Policy</strong> — OSHA/DOL reporting framework; privacy-aware standards.</li>
+        <li><strong>Sea-Level Rise &amp; Resilience</strong> — Bangladesh/Maldives/Philippines, lead–lag analysis &amp; policy guidance.</li>
+        <li><strong>Humanitarian Security Incidents</strong> — 4,300+ incidents; full-stack data storytelling platform.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Coursework (selected)</summary>
+      <div class="chip">NLP</div><div class="chip">ML/AI</div><div class="chip">Deep Learning</div><div class="chip">Network Analysis</div><div class="chip">GNNs</div>
+      <div class="chip">Physics</div><div class="chip">Biochem</div><div class="chip">Neurobiology</div><div class="chip">Topology</div><div class="chip">Cryptography</div>
+    </details>
+
+    <details open>
+      <summary>Technical Skills</summary>
+      <ul class="bul">
+        <li><strong>ML/AI</strong>: CNNs, RNNs, Transformers, LLM fine-tuning, GNNs, RL, Agentic AI (LangChain/AutoGen/CrewAI/LangGraph).</li>
+        <li><strong>Trusted AI</strong>: DP, MPC, ZKPs, FL, input validation, taint &amp; dead-code analysis, safety guardrails.</li>
+        <li><strong>Programming</strong>: Python, R, MATLAB/SPM, C/C++/C#, Java, Rust, Go, Groovy, Swift, SQL, JavaScript/React/D3, HTML/CSS, PHP.</li>
+        <li><strong>Eng/Cloud</strong>: AWS/Azure/GCP, Docker/K8s, CI/CD (GitHub Actions), LLVM IR, Tree-sitter, SafeDocs, Tor/Shadow.</li>
+        <li><strong>Data Viz</strong>: Streamlit/Plotly/Chart.js/Tableau; geospatial &amp; time-series analysis.</li>
+        <li><strong>Neuro</strong>: fMRI preprocessing/GLM/MVPA/connectivity; BIDS/Nipype/Nilearn.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Languages &amp; Presentations &amp; Affiliations</summary>
+      <ul class="bul">
+        <li><strong>Languages</strong>: English, Spanish, French (fluent); Haitian Creole, ASL (proficient).</li>
+        <li><strong>Recent Presentations</strong>: DSAN 6400 IoT CDI (Apr 2025); DSAN 5450 Gig Economy (Apr 2025); MDI Symposium SCIF (May 2024); ANI.ML Posters (2023–2024).</li>
+        <li><strong>Affiliations</strong>: GAGE; AWM; SWE; Hoya Developers; Hoyalytics; MDI Scholar Program; GUWeCode; Disruptive Tech; Qualtrics Mentorship.</li>
+      </ul>
+    </details>
+
+  </section>
+
+  <div class="cabinet">
+    <div class="handle" data-open-cabinet>▼ open the cabinet</div>
+    <div class="container"><!-- drawer is injected by cabinet.js --></div>
+  </div>
+
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/cabinet.js"></script>
+</body>
+</html>

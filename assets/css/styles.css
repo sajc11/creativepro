@@ -176,3 +176,48 @@ body.creative-landing{ background:#000; color:#eee }
 
 /* Hide old tabs UI if present once drawer loads */
 .drawer-installed .drawer-tabs{ display:none !important }
+
+/* ======= Single File-Folder Look ======= */
+.cabinet{ background:linear-gradient(180deg,#f3f0df,#efe7c9); border-bottom:2px solid #c6b98b }
+.cabinet .drawer-root{ padding:18px 28px 26px 28px }
+.folder-shell{
+  background: #fff5cd;
+  border:2px solid #1c1a12;
+  border-radius:16px 16px 14px 14px;
+  box-shadow: 0 18px 60px rgba(0,0,0,.35), inset 0 2px 0 rgba(255,255,255,.35);
+  padding:16px; position:relative;
+}
+.folder-shell::before{
+  content:"";
+  position:absolute; top:-18px; left:18px;
+  width:180px; height:28px; background:#fff0b0;
+  border:2px solid #1c1a12; border-bottom:none;
+  border-radius:12px 12px 0 0;
+  box-shadow: 4px 0 0 rgba(0,0,0,.6);
+}
+.drawer{ display:grid; grid-template-columns: 1.1fr 1.6fr; gap:22px }
+.files{ max-height: 56vh; overflow:auto; padding:10px; background:#fffcef;
+  border-radius:12px; border:1px solid #d4c596; box-shadow: inset 0 2px 12px rgba(0,0,0,.08) }
+.file{ position:relative; margin:12px 4px; cursor:pointer }
+.file .sheet{
+  height:64px;
+  background: repeating-linear-gradient(180deg, #fffef6, #fffef6 12px, #fff9d9 12px, #fff9d9 24px);
+  border:2px solid #1c1a12; border-radius:10px; box-shadow: 6px 7px 0 rgba(0,0,0,.6);
+}
+.file .tab{
+  position:absolute; top:-11px; left:12px; height:24px; min-width:120px; padding:0 10px;
+  background:#1c1a12; color:#fff; border:2px solid #1c1a12; border-bottom:none; border-radius:10px 10px 0 0;
+  font-weight:900; letter-spacing:.3px; text-transform:uppercase; display:flex; align-items:center; gap:8px;
+}
+.file:hover .sheet{ transform: translate(2px, -2px) rotate(-0.3deg); transition:.15s }
+.file:hover .tab{ transform: translateY(-2px) }
+.preview{ background:#111216; color:#eaeaf0; border-radius:14px; border:1px solid rgba(255,255,255,.08);
+  box-shadow:var(--shadow); padding:14px; position:relative; min-height:56vh }
+.preview .frame{ position:relative; border-radius:12px; background:#0c0d12; border:1px solid rgba(255,255,255,.1); overflow:hidden;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.04), 0 14px 32px rgba(0,0,0,.45) }
+.preview iframe{ width:100%; height:52vh; transform: scale(.66); transform-origin:0 0; pointer-events:none; border:0 }
+.preview .overlay{ position:absolute; inset:0; background:linear-gradient(180deg, transparent, rgba(0,0,0,.25)); opacity:0; transition:.2s; pointer-events:none }
+.preview.loading .overlay{ opacity:1 }
+.preview .label{ font-weight:800; letter-spacing:.4px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center }
+.preview .openbtn{ border:1px solid rgba(255,255,255,.14); background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  color:#fff; border-radius:10px; padding:6px 10px; font-weight:700 }
