@@ -93,7 +93,12 @@ function step(){
     n.vx=Math.max(-physics.maxSpeed, Math.min(physics.maxSpeed, n.vx)); n.vy=Math.max(-physics.maxSpeed, Math.min(physics.maxSpeed, n.vy));
     n.x+=n.vx; n.y+=n.vy; if(n.x<n.r){n.x=n.r; n.vx*=-.5} if(n.y<n.r+6){n.y=n.r+6; n.vy*=-.5} if(n.x>W-n.r){n.x=W-n.r; n.vx*=-.5} if(n.y>H-n.r){n.y=H-n.r; n.vy*=-.5} }
   ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
-  // glow lines
+// paint dark background so white nodes/edges are visible even on light themes
+const W = canvas.clientWidth, H = canvas.clientHeight;
+const g = ctx.createRadialGradient(W*0.7, H*0.2, 0, W*0.7, H*0.2, Math.max(W,H));
+g.addColorStop(0,'#0b0c10'); g.addColorStop(1,'#000');
+ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+// glow lines
   ctx.lineWidth=1.5; ctx.strokeStyle="rgba(255,255,255,.65)";
   ctx.beginPath(); for(const [a,b] of edges){ const na=nodes[a], nb=nodes[b]; ctx.moveTo(na.x, na.y); ctx.lineTo(nb.x, nb.y); } ctx.stroke();
   // nodes

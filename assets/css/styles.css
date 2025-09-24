@@ -297,3 +297,6 @@ body.cabinet-open{ overflow:hidden } /* lock background scroll while open */
 }
 .open-file .frame{ height:calc(100% - 70px) }
 .open-file iframe{ width:100%; height:100%; transform:none } /* no canvas scale to avoid blur */
+
+/* Force a dark backdrop behind the node web */
+#webcanvas{ background:#000 !important; }
