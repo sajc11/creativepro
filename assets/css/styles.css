@@ -300,3 +300,14 @@ body.cabinet-open{ overflow:hidden } /* lock background scroll while open */
 
 /* Force a dark backdrop behind the node web */
 #webcanvas{ background:#000 !important; }
+
+/* === File-surface theme for creative landing === */
+body.creative-landing[data-web-theme="file"]{
+  background:
+    radial-gradient(900px 500px at 90% -10%, rgba(0,0,0,.05), transparent 40%),
+    linear-gradient(180deg, #efefef, #eae9e6);
+  color:#111;
+}
+body.creative-landing[data-web-theme="file"] #tooltip{
+  background:#111; color:#fff; border-color:rgba(255,255,255,.2);
+}

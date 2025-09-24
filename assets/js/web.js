@@ -1,5 +1,10 @@
 
 const canvas = document.getElementById("webcanvas"); const ctx = canvas.getContext("2d");
+const THEME = (document.body.dataset.webTheme || "").toLowerCase(); // 'file' or default
+const COLORS = THEME === "file" ? {
+  bgA: "#efefef", bgB: "#e6e4de", line: "#1c1a12", nodeFill: "#ffffff", nodeInner:"#1c1a12", halo:"rgba(28,26,18,.14)"
+} : { bgA: "#0b0c10", bgB: "#000000", line: "rgba(255,255,255,.75)", nodeFill: "#ffffff", nodeInner:"#111111", halo:"rgba(255,255,255,.22)" };
+
 const tickFlash = document.createElement("div"); tickFlash.id="tickFlash"; document.body.appendChild(tickFlash);
 
 function resize(){ const dpr=window.devicePixelRatio||1; canvas.width=Math.floor(canvas.clientWidth*dpr); canvas.height=Math.floor(canvas.clientHeight*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); }
@@ -93,22 +98,21 @@ function step(){
     n.vx=Math.max(-physics.maxSpeed, Math.min(physics.maxSpeed, n.vx)); n.vy=Math.max(-physics.maxSpeed, Math.min(physics.maxSpeed, n.vy));
     n.x+=n.vx; n.y+=n.vy; if(n.x<n.r){n.x=n.r; n.vx*=-.5} if(n.y<n.r+6){n.y=n.r+6; n.vy*=-.5} if(n.x>W-n.r){n.x=W-n.r; n.vx*=-.5} if(n.y>H-n.r){n.y=H-n.r; n.vy*=-.5} }
   ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
-// paint dark background so white nodes/edges are visible even on light themes
 const W = canvas.clientWidth, H = canvas.clientHeight;
-const g = ctx.createRadialGradient(W*0.7, H*0.2, 0, W*0.7, H*0.2, Math.max(W,H));
-g.addColorStop(0,'#0b0c10'); g.addColorStop(1,'#000');
+const g = ctx.createLinearGradient(0,0,0,H);
+g.addColorStop(0, COLORS.bgA); g.addColorStop(1, COLORS.bgB);
 ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
 // glow lines
-  ctx.lineWidth=1.5; ctx.strokeStyle="rgba(255,255,255,.65)";
+  ctx.lineWidth=1.5; ctx.strokeStyle = COLORS.line;
   ctx.beginPath(); for(const [a,b] of edges){ const na=nodes[a], nb=nodes[b]; ctx.moveTo(na.x, na.y); ctx.lineTo(nb.x, nb.y); } ctx.stroke();
   // nodes
   for(let i=0;i<nodes.length;i++){ const n=nodes[i]; const on=(i===hoverId);
     if(on){ // halo
-      const grad=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,40); grad.addColorStop(0,"rgba(255,255,255,.85)"); grad.addColorStop(1,"rgba(255,255,255,0)");
+      const grad=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,40); grad.addColorStop(0, COLORS.halo); grad.addColorStop(1, "rgba(0,0,0,0)");
       ctx.fillStyle=grad; ctx.beginPath(); ctx.arc(n.x,n.y,40,0,Math.PI*2); ctx.fill();
     }
     ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.fillStyle= on ? "#fff" : "#fafafa"; ctx.globalAlpha= on?1:.9; ctx.fill(); ctx.globalAlpha=1;
-    ctx.beginPath(); ctx.arc(n.x, n.y, Math.max(3, n.r*0.3), 0, Math.PI*2); ctx.fillStyle="#111"; ctx.fill();
+    ctx.beginPath(); ctx.arc(n.x, n.y, Math.max(3, n.r*0.3), 0, Math.PI*2); ctx.fillStyle = COLORS.nodeInner; ctx.fill();
   }
   requestAnimationFrame(step);
 }
