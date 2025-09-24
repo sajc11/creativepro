@@ -3,7 +3,11 @@ const canvas = document.getElementById("webcanvas"); const ctx = canvas.getConte
 const tickFlash = document.createElement("div"); tickFlash.id="tickFlash"; document.body.appendChild(tickFlash);
 
 function resize(){ const dpr=window.devicePixelRatio||1; canvas.width=Math.floor(canvas.clientWidth*dpr); canvas.height=Math.floor(canvas.clientHeight*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); }
-new ResizeObserver(resize).observe(canvas); resize();
+if (window.ResizeObserver) { new ResizeObserver(resize).observe(canvas); }
+resize();
+window.addEventListener('resize', resize);
+window.addEventListener('load', resize);
+setTimeout(resize, 0);
 
 const nodes=[
   {id:"journal", label:"Private Journal", url:"journal.html"},

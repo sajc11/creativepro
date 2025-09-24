@@ -262,3 +262,38 @@ body.creative-landing{ background:#000; color:#eee }
 .open-file iframe{ width:100%; height:48vh; border:0; background:#fff }
 .open-file .bar{ position:absolute; left:0; right:0; top:0; height:8px; background:linear-gradient(90deg,#c4bea1,#efe6c6) }
 .open-file .closebtn{ margin-left:auto; border:1px solid #1c1a12; background:#fff; color:#1c1a12; border-radius:8px; padding:5px 8px; font-weight:700; cursor:pointer }
+
+/* === Full-screen cabinet === */
+.cabinet{
+  position:fixed;
+  top:-100dvh;               /* completely hidden when closed */
+  left:0; right:0;
+  height:100dvh;             /* true viewport height incl. mobile toolbars */
+  z-index:1000;
+  overflow:hidden;           /* keep the folder contained */
+}
+.cabinet.open{ top:0 }
+body.cabinet-open{ overflow:hidden } /* lock background scroll while open */
+
+/* Cabinet content fills viewport below topbar */
+.drawer-root{ height:calc(100dvh - 76px); display:flex; align-items:stretch }
+.folder-shell{ width:100%; display:flex; }
+.speed-index{ flex:1; display:flex; }
+.speed-index .stacks{
+  display:grid;
+  grid-template-columns: 1fr minmax(520px, 1.25fr) 1fr;
+  gap:16px;
+  width:100%;
+  align-items:stretch;
+}
+.stack{ overflow:auto; padding-right:6px; }
+.center-well{ min-height:auto; display:flex; align-items:center; justify-content:center; overflow:hidden }
+
+/* Open-file scales with viewport and avoids clipping */
+.open-file{
+  position:relative; inset:auto; width:min(100%, 1100px);
+  max-height:calc(100dvh - 140px);
+  overflow:hidden;
+}
+.open-file .frame{ height:calc(100% - 70px) }
+.open-file iframe{ width:100%; height:100%; transform:none } /* no canvas scale to avoid blur */
