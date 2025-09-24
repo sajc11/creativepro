@@ -7,7 +7,11 @@ const COLORS = THEME === "file" ? {
 
 const tickFlash = document.createElement("div"); tickFlash.id="tickFlash"; document.body.appendChild(tickFlash);
 
-function resize(){ const dpr=window.devicePixelRatio||1; canvas.width=Math.floor(canvas.clientWidth*dpr); canvas.height=Math.floor(canvas.clientHeight*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); }
+function resize(){
+  // ensure the canvas takes space
+  if(!canvas.style.width) canvas.style.width = '100%';
+  if(!canvas.style.height) canvas.style.height = 'calc(100vh - 140px)';
+ const dpr=window.devicePixelRatio||1; canvas.width=Math.floor(canvas.clientWidth*dpr); canvas.height=Math.floor(canvas.clientHeight*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); }
 if (window.ResizeObserver) { new ResizeObserver(resize).observe(canvas); }
 resize();
 window.addEventListener('resize', resize);
@@ -67,6 +71,7 @@ function subStep(){
 const center = ()=>({x: canvas.clientWidth/2, y: canvas.clientHeight/2});
 function initPositions(){ const c=center(); const R=Math.min(c.x,c.y)*0.72; const n=nodes.length; nodes.forEach((node,i)=>{ const t=(i/n)*Math.PI*2; node.x=c.x+R*Math.cos(t); node.y=c.y+R*Math.sin(t); node.vx=0; node.vy=0; node.m=1; node.r=14+(node.id==="pro"?6:0); }); }
 initPositions();
+// draw an initial frame immediately in case rAF is throttled
 const edges=[]; for(let i=0;i<nodes.length;i++) edges.push([i,(i+1)%nodes.length]); const hub=nodes.findIndex(n=>n.id==="journal"); nodes.forEach((n,i)=>{ if(i!==hub) edges.push([hub,i]); });
 const physics={spring:.015, rest:160, repulsion:1600, damping:.92, maxSpeed:8};
 
@@ -89,6 +94,7 @@ function pick(x,y){ for(let i=nodes.length-1;i>=0;i--){ const n=nodes[i]; const 
 const tooltip=document.getElementById("tooltip"); function showTooltip(x,y,id){ if(id==null){ tooltip.style.display="none"; return; } const n=nodes[id]; tooltip.style.display="block"; tooltip.textContent=n.label; tooltip.style.left=x+"px"; tooltip.style.top=y+"px"; }
 
 function step(){
+  ensureEdges();
   for(const [a,b] of edges){ const na=nodes[a], nb=nodes[b]; let dx=nb.x-na.x, dy=nb.y-na.y; const dist=Math.max(0.001, Math.hypot(dx,dy)); const f=physics.spring*(dist-physics.rest);
     dx/=dist; dy/=dist; const fx=f*dx, fy=f*dy; if(dragId!==a){ na.vx += fx/na.m; na.vy += fy/na.m } if(dragId!==b){ nb.vx -= fx/nb.m; nb.vy -= fy/nb.m } }
   for(let i=0;i<nodes.length;i++){ for(let j=i+1;j<nodes.length;j++){ const a=nodes[i], b=nodes[j]; let dx=b.x-a.x, dy=b.y-a.y; let d2=dx*dx+dy*dy+0.01; const f=physics.repulsion/d2;
@@ -114,8 +120,10 @@ ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
     ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.fillStyle= on ? "#fff" : "#fafafa"; ctx.globalAlpha= on?1:.9; ctx.fill(); ctx.globalAlpha=1;
     ctx.beginPath(); ctx.arc(n.x, n.y, Math.max(3, n.r*0.3), 0, Math.PI*2); ctx.fillStyle = COLORS.nodeInner; ctx.fill();
   }
-  requestAnimationFrame(step);
+  step();
+requestAnimationFrame(step);
 }
+step();
 requestAnimationFrame(step);
 
 // Cabinet drag-peek: progress follows pointer within top zone
